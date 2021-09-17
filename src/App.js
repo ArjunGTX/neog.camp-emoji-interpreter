@@ -10,7 +10,9 @@ const emojiDictionary = {
   "😠": "Angry",
   "😴": "Sleep",
   "😰": "Afraid",
-  "🤔": "thought"
+  "🤔": "thought",
+  "😏": "Smirking",
+  "😖": "Upset"
 };
 
 //creating array from object
