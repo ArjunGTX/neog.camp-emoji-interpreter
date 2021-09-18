@@ -19,14 +19,15 @@ const emojiDictionary = {
 const emojis = Object.keys(emojiDictionary);
 
 export default function App() {
-
   //default state of emoji is empty
   const [emoji, setEmoji] = useState(""); /** concept 2 is useState */
-  const [meaning, setMeaning] = useState("Meaning of the Emoji will be displayed here..");
+  const [meaning, setMeaning] = useState(
+    "Meaning of the Emoji will be displayed here.."
+  );
 
   //function to process the emoji
   function emojiChangeHandler(event) {
-    //reading the input emoji 
+    //reading the input emoji
     const emojiInput = event.target.value;
     //updating the state of emoji
     setEmoji(emojiInput);
@@ -34,12 +35,13 @@ export default function App() {
     if (emojiInput in emojiDictionary) {
       //updating the state of meaning
       setMeaning(emojiDictionary[emojiInput]);
-    } else {
+    } else if (emojiInput === "") {
       //updating the state of meaning with failiure message
+      setMeaning("Meaning of the Emoji will be displayed here..");
+    } else {
       setMeaning("Failed to recognise this emoji.");
     }
   }
-
 
   //function to process emoji when clicked
   function emojiClickHandler(inputEmoji) {
@@ -57,14 +59,14 @@ export default function App() {
         placeholder="Search your emoji"
       />
       <div className="emoji-div"> {emoji} </div>
-      <div className="meaning-div"> {meaning} </div> 
+      <div className="meaning-div"> {meaning} </div>
       {
         //map method returns a new array
         emojis.map((emoji) => (
           <span
-           //displaying each emoji 
+            //displaying each emoji
             onClick={() => emojiClickHandler(emoji)}
-            style={{ fontSize: "2rem", padding: "0.5rem",cursor: "pointer" }}
+            style={{ fontSize: "2rem", padding: "0.5rem", cursor: "pointer" }}
           >
             {emoji}
           </span>
