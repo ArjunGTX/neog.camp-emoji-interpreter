@@ -3,16 +3,30 @@ import "./styles.css";
 
 //storing emojis in a dictionary
 const emojiDictionary = {
-  "😍": "Love",
-  "😘": "Kiss",
-  "😂": "Laugh",
-  "😔": "sad",
-  "😠": "Angry",
-  "😴": "Sleep",
-  "😰": "Afraid",
-  "🤔": "thought",
-  "😏": "Smirking",
-  "😖": "Upset"
+  "⛔": "No Entry",
+  "🚏": "Bus Stop",
+  "🚷": "No Pedestrians",
+  "🚸": "Children Crossing",
+  "🚧": "Construction",
+  "⛖": "Two Way",
+  "🚭": "No Smoking",
+  "⛽": "Petrol Bunk",
+  "⛐": "Slippery Road",
+  "🛑": "Stop",
+  "⛍": "Disabled Vehicle",
+  "🚦": "Vertical Trafficl Lights",
+  "⛕": "Alternate One-Way Left Way",
+  "🚻": "Rest Room",
+  "🚨": "Police Car Light",
+  "⛒": "Circled Crossing Lane",
+  "♿": "Handicaped",
+  "⛼": "Headstone Graveyard",
+  "🚰": "Portable Water",
+  "🏧": "ATM",
+  "⚠": "Warning",
+  "☣": "Bio Hazard",
+  "☢": "Radio Active",
+  "🚫": "Prohibited"
 };
 
 //creating array from object
@@ -20,7 +34,7 @@ const emojis = Object.keys(emojiDictionary);
 
 export default function App() {
   //default state of emoji is empty
-  const [emoji, setEmoji] = useState(""); /** concept 2 is useState */
+  const [emoji, setEmoji] = useState("");
   const [meaning, setMeaning] = useState(
     "Meaning of the Emoji will be displayed here.."
   );
@@ -37,9 +51,9 @@ export default function App() {
       setMeaning(emojiDictionary[emojiInput]);
     } else if (emojiInput === "") {
       //updating the state of meaning with failiure message
-      setMeaning("Meaning of the Emoji will be displayed here..");
+      setMeaning("Meaning of the Traffic symbols will be displayed here..");
     } else {
-      setMeaning("Failed to recognise this emoji.");
+      setMeaning("Failed to recognise this Symbol.");
     }
   }
 
@@ -51,27 +65,42 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1>Emoji Interpreter</h1>
+      <h1>Traffic Symbols Interpreter</h1>
       <input
         //invoking emojiChangeHandler on onChange event
         onChange={emojiChangeHandler}
         value={emoji}
-        placeholder="Search your emoji"
+        placeholder="Search traffic symbol"
       />
       <div className="emoji-div"> {emoji} </div>
       <div className="meaning-div"> {meaning} </div>
-      {
-        //map method returns a new array
-        emojis.map((emoji) => (
-          <span
-            //displaying each emoji
-            onClick={() => emojiClickHandler(emoji)}
-            style={{ fontSize: "2rem", padding: "0.5rem", cursor: "pointer" }}
-          >
-            {emoji}
-          </span>
-        ))
-      }
+      <div className="emoji-list">
+        {
+          //map method returns a new array
+          emojis.map((emoji) => (
+            <div
+              style={{
+                width: "60px",
+                height: "60px",
+                border: "1px solid black"
+              }}
+              onClick={() => emojiClickHandler(emoji)}
+            >
+              <span
+                //displaying each emoji
+                style={{
+                  fontSize: "2rem",
+                  padding: "0.5rem",
+                  cursor: "pointer",
+                  lineHeight: "4rem"
+                }}
+              >
+                {emoji}
+              </span>
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 }
